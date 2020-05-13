@@ -1,0 +1,18 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+$primary-color : #ff5200;
+$secondary-color : #6f0000;
+
+$theme-colors: (
+  "primary":    $primary-color,
+  "secondary":  $secondary-color,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark,
+);
+
+@import "~bootstrap/scss/bootstrap";
