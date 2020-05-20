@@ -1,2 +1,2 @@
 # wild-series
-Quête Odyssey Symfony 03
+03 - Symfony : Création de la page d’accueil
