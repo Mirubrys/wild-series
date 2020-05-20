@@ -15,4 +15,11 @@ $theme-colors: (
   "dark":       $dark,
 );
 
+/** Fixed-top navbar correction */
+body {
+  min-height: 75rem;
+  padding-top: 4.5rem;
+}
+
+/** Importing whole Bootstrap */
 @import "~bootstrap/scss/bootstrap";
