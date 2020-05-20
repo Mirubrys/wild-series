@@ -1,2 +1,2 @@
 # wild-series
-Quête Odyssey Symfony 04
+04 - Symfony : Installation du module Webpack Encore
