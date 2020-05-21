@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ program.title }}{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+
+        <div class="row no-gutters justify-content-center">
+            <div class="col-11 col-lg-8">
+                <h1 class="text-primary text-center">Saison {{ season.number }} de {{ program.title }}</h1>
+            </div>
+        </div>
+
+        <div class="row no-gutters justify-content-center">
+            <p class="col-11 col-lg-8 text-secondary">{{ season.description }}</p>
+        </div>
+
+        <div class="row no-gutters justify-content-center">
+            <div class="col-11 col-lg-8 border border-primary p-3">
+                <h2 class="text-secondary">Liste des épisodes</h2>
+                <ul class="list-group list-group-flush">
+                    {% for episode in episodes %}
+                        <li class="list-group-item"><a class="text-secondary" href="#">Épisode {{ episode.number }} : {{ episode.title }}</a></li>
+                    {% else %}
+                        Nothing to display.
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="row no-gutters justify-content-center mt-5">
+            <div class="col-11 col-lg-10">
+                <a href="{{ path('wild_show', {'slug': program.title|lower|replace({' ': '-'})}) }}">
+                    Retour à la page de la série
+                </a>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
