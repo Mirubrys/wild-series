@@ -2,18 +2,35 @@
 {% block title %}{{ slug }}{% endblock %}
 
 {% block body %}
+    <div class="container-fluid">
 
-    <div class="media">
-        <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
-        <div class="media-body">
-            <h1 class="mt-0">{{ program.title }}</h1>
-            <p>{{ program.summary }}</p>
-            <p>Categorie : {{ program.category.name }}</p>
+        <div class="row no-gutters justify-content-center">
+            <div class="col-11 col-lg-8 media">
+                <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
+                <div class="media-body">
+                    <h1 class="mt-0 text-primary">{{ program.title }}</h1>
+                    <p>{{ program.summary }}</p>
+                    <p class="text-secondary">Categorie : {{ program.category.name }}</p>
+                    <br>
+                    <h2 class="text-secondary">Saisons</h2>
+                    <ul class="col-12 col-lg-6 list-group list-group-flush">
+                        {% for season in seasons %}
+                            <li class="list-group-item"><a class="text-secondary" href="{{path('wild_show_season', {'id': season.id})}}">Saison {{ season.number }}</a></li>
+                        {% else %}
+                            Nothing to display.
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
         </div>
+
+        <div class="row no-gutters justify-content-center mt-5">
+            <div class="col-11 col-lg-10">
+                <a href="{{ path('wild_index') }}">
+                    Retour à la liste des séries
+                </a>
+            </div>
+        </div>
+
     </div>
-
-    <a href="{{ path('wild_index') }}">
-        Retour à l'accueil
-    </a>
-
 {% endblock %}

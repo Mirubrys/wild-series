@@ -3,16 +3,31 @@
 {% block title %}Category | {{ category.name }}{% endblock %}
 
 {% block body %}
-    <h1>Trois séries de la catégorie '{{ category.name }}' : </h1>
-    {% for program in programs %}
-        <div>
-            <h2>{{ loop.index }} / {{ program.title }}</h2>
-            <p>{{ program.summary }}</p>
+    <div class="container-fluid">
+
+        <div class="row no-gutters justify-content-center">
+            <div class="col-11 col-lg-8">
+                <h1 class="text-primary">Trois séries de la catégorie '{{ category.name }}' :</h1>
+            </div>
         </div>
-    {% else %}
-        Aucune série trouvée.
-    {% endfor %}
-    <a href="{{ path('app_index') }}">
-        Retour à l'accueil
-    </a>
+
+        <div class="row no-gutters justify-content-center">
+            {% for program in programs %}
+                <div class="col-11 col-lg-8">
+                    <h2><a class="text-secondary" href="{{ path('wild_show', {'slug': program.title|lower|replace({' ': '-'})}) }}">{{ loop.index }} / {{ program.title }}</a></h2>
+                    <p>{{ program.summary }}</p>
+                </div>
+            {% else %}
+                Aucune série trouvée.
+            {% endfor %}
+        </div>
+
+        <div class="row no-gutters justify-content-center mt-5">
+            <div class="col-11 col-lg-10">
+                <a href="{{ path('app_index') }}">
+                    Retour à l'accueil
+                </a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
