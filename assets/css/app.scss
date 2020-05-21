@@ -1,6 +1,7 @@
 /** Importing Bootstrap functions and variables */
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/bootstrap-grid";
 
 /** Changing bootstrap colors variables */
 $primary-color : #ff5200; // Primary color
@@ -21,6 +22,42 @@ $theme-colors: (
 body {
   min-height: 75rem;
   padding-top: 4.5rem;
+}
+
+/** Added breakpoint to borders */
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    .border-#{$breakpoint}{
+      border: solid 1px;
+    }
+    .border-#{$breakpoint}-none{
+      border: none;
+    }
+    .border-#{$breakpoint}-left {
+      border-left: solid 1px;
+    }
+    .border-#{$breakpoint}-left-none {
+      border-left: none;
+    }
+    .border-#{$breakpoint}-right {
+      border-right: 1px solid;
+    }
+    .border-#{$breakpoint}-right-none {
+      border-right: none;
+    }
+    .border-#{$breakpoint}-top {
+      border-top: solid 1px;
+    }
+    .border-#{$breakpoint}-top-none {
+      border-top:none;
+    }
+    .border-#{$breakpoint}-bottom {
+      border-bottom: solid 1px;
+    }
+    .border-#{$breakpoint}-bottom-none {
+      border-bottom:none;
+    }
+  }
 }
 
 /** Importing whole Bootstrap */
