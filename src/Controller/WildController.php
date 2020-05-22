@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,14 +16,18 @@ use Symfony\Component\Routing\Annotation\Route;
  * @package App\Controller
  * @Route(
  *     "/wild",
- *     name="wild_")
+ *     name="wild_"
+ * )
  */
 class WildController extends AbstractController
 {
     /**
+     * Display all available programs
+     *
      * @Route(
      *     "/index",
-     *     name="index")
+     *     name="index"
+     * )
      * @return Response
      */
     public function index() :Response
@@ -43,13 +48,14 @@ class WildController extends AbstractController
     }
 
     /**
-     * Getting a program with a formatted slug for title
+     * Display the selected program
      *
      * @param string $slug The slugger
      * @Route(
      *     "/show/{slug<^[a-z0-9-]+$>}",
      *     defaults={"slug" = null},
-     *     name="show")
+     *     name="show"
+     * )
      * @return Response
      */
     public function show(?string $slug):Response
@@ -85,11 +91,14 @@ class WildController extends AbstractController
     }
 
     /**
+     * Display the programs of the selected category
+     *
      * @param string $categoryName
      * @Route(
-     *     "/category/{categoryName<^[a-z-]+$>}",
+     *     "/show/category/{categoryName<^[a-z-]+$>}",
      *     defaults={"categoryName" = null},
-     *     name="show_category")
+     *     name="show_category"
+     * )
      * @return Response
      */
     public function showByCategory(?string $categoryName) :Response
@@ -137,12 +146,15 @@ class WildController extends AbstractController
     }
 
     /**
+     * Display the selected season's page
+     *
      * @param int $id
      * @return Response
      * @Route(
-     *     "/show/seasons/{id<^\d+$>}",
-     *     defaults={"id"= null},
-     *     name = "show_season")
+     *     "/show/season/{id<^\d+$>}",
+     *     defaults={"id" = null},
+     *     name = "show_season"
+     * )
      */
     public function showBySeason(int $id) :Response
     {
@@ -156,6 +168,13 @@ class WildController extends AbstractController
             ->getDoctrine()
             ->getRepository(Season::class)
             ->find($id);
+
+        if (!$season) {
+            throw $this
+                ->createNotFoundException(
+                    'Doesn\'t exists'
+                );
+        }
         $program = $season->getProgram();
         $episodes = $season->getEpisodes();
 
@@ -163,6 +182,29 @@ class WildController extends AbstractController
             'program' => $program,
             'season' => $season,
             'episodes' => $episodes,
+        ]);
+    }
+
+    /**
+     * Display the selected episode's page
+     *
+     * @param Episode $episode
+     * @Route(
+     *     "/show/episode/{id<^\d+$>}",
+     *     defaults={"id" = null},
+     *     name = "show_episode"
+     * )
+     * @return Response
+     */
+    public function showEpisode(Episode $episode) :Response
+    {
+        $season = $episode->getSeason();
+        $program = $season->getProgram();
+
+        return $this->render('wild/episode.html.twig', [
+            'episode' => $episode,
+            'season' => $season,
+            'program' => $program,
         ]);
     }
 }
