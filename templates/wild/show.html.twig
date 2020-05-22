@@ -34,3 +34,8 @@
 
     </div>
 {% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{{ path('wild_index') }}">Séries</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ program.title }}</li>
+{% endblock %}

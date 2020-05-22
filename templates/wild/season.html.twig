@@ -28,13 +28,11 @@
             </div>
         </div>
 
-        <div class="row no-gutters justify-content-center mt-5">
-            <div class="col-11 col-lg-10">
-                <a href="{{ path('wild_show', {'slug': program.title|lower|replace({' ': '-'})}) }}">
-                    Retour à la page de la série
-                </a>
-            </div>
-        </div>
-
     </div>
+{% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{{ path('wild_index') }}">Séries</a></li>
+    <li class="breadcrumb-item"><a href="{{ path('wild_show', {'slug': program.title|lower|replace({' ': '-'})}) }}">{{ program.title }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Saison {{ season.number }}</li>
 {% endblock %}

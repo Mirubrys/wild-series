@@ -17,6 +17,13 @@
 
         {% block body %}{% endblock %}
 
+        <nav class="mt-5" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('app_index') }}">Home</a></li>
+                {% block breadcrumb %}{% endblock %}
+            </ol>
+        </nav>
+
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
