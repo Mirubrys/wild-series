@@ -1,5 +1,5 @@
 # wild-series
-11 - Symfony : Gardez la “form” !
+10 - Symfony : Le param converter
 
 # Installation
 * Just clone this repository, if it is already done, launch a terminal inside the root folder and run `git checkout param-converter`
