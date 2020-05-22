@@ -1,8 +1,8 @@
 # wild-series
-09 - Symfony : Les relations bidirectionnelles avec Doctrine
+11 - Symfony : Gardez la “form” !
 
 # Installation
-* Just clone this repository, if it is already done, launch a terminal inside the root folder and run `git checkout bidirectional-relationship`
+* Just clone this repository, if it is already done, launch a terminal inside the root folder and run `git checkout param-converter`
 
 # Navigation bar
 The navbar now contains a new link `Séries` witch redirect to the `wild_index` path.
@@ -11,4 +11,4 @@ The navbar now contains a new link `Séries` witch redirect to the `wild_index` 
 The homepage now contains three links to test the methods `showByCategory($categoryName)`, `show($slug)` and `index()`.
 
 # Demo Video
-Link : https://drive.google.com/open?id=1wxOnBMMBm0Qlqh8VcfQydn4irZv9JZGm
+Link : https://drive.google.com/open?id=1JW9kFtPOsguKIvjJ2kcUkccxXb4HJQ77
