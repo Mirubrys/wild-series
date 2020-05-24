@@ -1,0 +1,26 @@
+{% block form_row %}
+    <div class="col-11 col-lg-5">
+        <div class="form-group">
+            {{ form_label(form, '', {
+                'attr': {
+                    'class': 'col-12 col-lg-3'
+                }
+            }) }}
+            {{ form_widget(form, {
+                'attr': {
+                    'class': 'form-control form-control-sm col mx-lg-5'
+                }
+            }) }}
+            {{ form_help(form, {
+                'attr': {
+                    'class': 'col-12 form-text text-muted'
+                }
+            }) }}
+            {{ form_errors(form, {
+                'attr': {
+                    'class': 'col-12 invalid-feedback'
+                }
+            }) }}
+        </div>
+    </div>
+{% endblock %}
