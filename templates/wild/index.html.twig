@@ -3,11 +3,29 @@
 {% block title %}All programs{% endblock %}
 
 {% block body %}
-    <div class="container-fluid">
+    <div class="container-fluid p-0">
+
+        <div class="row no-gutters justify-content-center mb-5 py-3 bg-secondary text-white font-weight-bold">
+            {% form_theme form 'form/oneField.html.twig' %}
+            {{ form_start(form, {'attr': {'class': 'col-11 col-lg-8'}}) }}
+                <div class="form-inline row justify-content-center align-items-center">
+                    {{ form_row(form.searchField) }}
+                    <div class="col-12 col-lg-2">
+                        <button type="submit" class="btn btn-primary">Lancer</button>
+                    </div>
+                </div>
+            {{ form_end(form) }}
+        </div>
 
         <div class="row no-gutters justify-content-center">
             <div class="col-11 col-lg-8">
-                <h1 class="text-primary">Toutes les séries de la table program :</h1>
+                <h1 class="text-primary">
+                    {% if search %}
+                        Résultat de la recherche :
+                    {% else %}
+                        Toutes les séries :
+                    {% endif %}
+                </h1>
             </div>
         </div>
 
