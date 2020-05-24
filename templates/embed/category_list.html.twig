@@ -1,0 +1,18 @@
+<li class="nav-item dropdown border-lg-right border-secondary">
+    <a class="nav-link dropdown-toggle text-secondary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Catégories
+    </a>
+    <div class="dropdown-menu bg-primary border-0" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item text-secondary" href="{{ path('category_add') }}">
+            Ajouter
+        </a>
+        <div class="dropdown-divider"></div>
+        {% for category in categories %}
+            <a class="dropdown-item text-secondary" href="{{ path('wild_show_category', { 'categoryName': category.name|lower }) }}">
+                {{ category.name }}
+            </a>
+        {% else %}
+            Pas de catégories
+        {% endfor %}
+    </div>
+</li>
