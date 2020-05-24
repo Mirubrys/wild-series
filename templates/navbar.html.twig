@@ -8,6 +8,11 @@
             <li class="nav-item active border-lg-right border-secondary">
                 <a class="nav-link text-secondary" href="{{ path('wild_index') }}">Séries</a>
             </li>
+
+            {{ render(controller(
+                'App\\Controller\\CategoryController::selectCategory'
+            )) }}
+
             <li class="nav-item">
                 <a class="nav-link text-secondary disabled" href="#">Acteurs</a>
             </li>
