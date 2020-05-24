@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categories | Ajout{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row no-gutters justify-content-center">
+            {% if message %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="row no-gutters justify-content-center my-5">
+            <h1 class="col-11 col-lg-8 text-primary text-center">Création d'une catégorie</h1>
+        </div>
+        <div class="row no-gutters justify-content-center mb-3 py-3 font-weight-bold">
+            {% form_theme form 'form/oneField.html.twig' %}
+            {{ form_start(form, {'attr': {'class': 'col-11 col-lg-8'}}) }}
+                <div class="form-inline row justify-content-center align-items-center">
+                    {{ form_row(form.name) }}
+                    <div class="col-12 col-lg-2">
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
