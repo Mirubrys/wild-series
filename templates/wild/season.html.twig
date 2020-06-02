@@ -32,7 +32,7 @@
 {% endblock %}
 
 {% block breadcrumb %}
-    <li class="breadcrumb-item"><a href="{{ path('wild_index') }}">Séries</a></li>
+    <li class="breadcrumb-item"><a href="{{ path('wild_show_index') }}">Séries</a></li>
     <li class="breadcrumb-item"><a href="{{ path('wild_show', {'slug': program.title|lower|replace({' ': '-'})}) }}">{{ program.title }}</a></li>
     <li class="breadcrumb-item active" aria-current="page">Saison {{ season.number }}</li>
 {% endblock %}
