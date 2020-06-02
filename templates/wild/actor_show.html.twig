@@ -1,0 +1,34 @@
+{% extends 'base.html.twig'%}
+
+{% block title %}Acteur | {{ actor.name }}{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+
+        <div class="row no-gutters justify-content-center">
+            <div class="col-11 col-lg-8">
+                <h1 class="mt-0 text-primary">{{ actor.name }}</h1>
+            </div>
+
+            <div class="col-11 col-lg-8">
+                <h2 class="text-secondary">Liste des séries</h2>
+                <ul class="col-12 col-lg-6 list-group list-group-flush">
+                    {% for program in actor.programs %}
+                        <li class="list-group-item">
+                            <a class="text-secondary" href="{{ path('wild_show', {'slug': program.title|lower|replace({' ': '-'})}) }}">
+                                {{ program.title }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{{ path('wild_show_actor_index') }}">Acteurs</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ actor.name }}</li>
+{% endblock %}
