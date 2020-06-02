@@ -1,5 +1,5 @@
 # wild-series
-13 - Symfony : Validation
+12 - Symfony : Générer un CRUD
 
 # Installation
 * Just clone this repository, if it is already done, launch a terminal inside the root folder and run `git checkout form`.
