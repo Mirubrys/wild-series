@@ -141,7 +141,8 @@ class WildController extends AbstractController
      *
      * @param string $categoryName
      * @Route(
-     *     "/show/category/{categoryName<^[a-z-]+$>}",
+     *     "/show/category/{categoryName<^[a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ-]+$>}",
+     *     options = { "utf8": true },
      *     defaults={"categoryName" = null},
      *     name="show_category"
      * )
