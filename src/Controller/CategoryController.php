@@ -1,23 +1,17 @@
 <?php
 
-
 namespace App\Controller;
-
 
 use App\Entity\Category;
 use App\Form\CategoryType;
+use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class CategoryController
- * @package App\Controller
- * @Route(
- *     "/category",
- *     name="category_"
- * )
+ * @Route("/category")
  */
 class CategoryController extends AbstractController
 {
@@ -34,51 +28,85 @@ class CategoryController extends AbstractController
             ->getRepository(Category::class)
             ->findAll();
 
-        return $this->render('embed/category_list.html.twig', [
+        return $this->render('embed/_category_list.html.twig', [
             'categories' => $categories,
         ]);
     }
 
     /**
-     * Display a form to create a new category
-     *
-     * @param Request $request
-     * @Route(
-     *     "/add",
-     *     name="add"
-     * )
-     * @return Response
+     * @Route("/", name="category_index", methods={"GET"})
      */
-    public function add(Request $request) :Response
+    public function index(CategoryRepository $categoryRepository): Response
     {
-        // Variable witch contains a success message
-        $message = null;
-
-        /* We instantiate a search form */
-        $form = $this->createForm(CategoryType::class);
-        $form->handleRequest($request);
-
-        /* If the form is submitted, we create a new category in database */
-        if ($form->isSubmitted()) {
-
-            // We get the data from the form
-            $category = $form->getData();
-
-            // We instantiate the entity manager
-            $entityManager = $this->getDoctrine()
-                ->getManager();
-
-            // We merge the new object with the database
-            $entityManager->persist($category);
-            $entityManager->flush();
-
-            $message = 'La catégorie "'.$category->getName().'" a été correctement crée.';
-        }
-
-        return $this->render('category/add.html.twig', [
-            'form' => $form->createView(),
-            'message' => $message,
+        return $this->render('category/index.html.twig', [
+            'categories' => $categoryRepository->findAll(),
         ]);
     }
 
+    /**
+     * @Route("/new", name="category_new", methods={"GET","POST"})
+     */
+    public function new(Request $request): Response
+    {
+        $category = new Category();
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($category);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('category_index');
+        }
+
+        return $this->render('category/new.html.twig', [
+            'category' => $category,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="category_show", methods={"GET"})
+     */
+    public function show(Category $category): Response
+    {
+        return $this->render('category/show.html.twig', [
+            'category' => $category,
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/edit", name="category_edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, Category $category): Response
+    {
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('category_index');
+        }
+
+        return $this->render('category/edit.html.twig', [
+            'category' => $category,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="category_delete", methods={"DELETE"})
+     */
+    public function delete(Request $request, Category $category): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($category);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('category_index');
+    }
 }
