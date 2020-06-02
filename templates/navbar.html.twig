@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="col-lg-6 navbar-nav d-lg-flex justify-content-center">
             <li class="nav-item active border-lg-right border-white">
-                <a class="nav-link" href="{{ path('wild_index') }}">Séries</a>
+                <a class="nav-link" href="{{ path('wild_show_index') }}">Séries</a>
             </li>
 
             {{ render(controller(
@@ -16,7 +16,7 @@
             )) }}
 
             <li class="nav-item">
-                <a class="nav-link disabled" href="#">Acteurs</a>
+                <a class="nav-link" href="{{ path('wild_show_actor_index') }}">Acteurs</a>
             </li>
         </ul>
         <ul class="col-lg-6 navbar-nav d-lg-flex justify-content-end">
