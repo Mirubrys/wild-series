@@ -1,5 +1,5 @@
 # wild-series
-13 - Symfony : Validation
+14 - Symfony : Doctrine relations “Many-To-Many”
 
 # Installation
 * Just clone this repository, if it is already done, launch a terminal inside the root folder and run `git checkout form`.
@@ -14,4 +14,4 @@
 * 02/06/2020 - The homepage design is as it is in the wireframe.
 
 # Demo Video
-Link : https://drive.google.com/file/d/1gCUTTMrfd7nJ0SjjEI4yaORJvPR2U9v1/view?usp=sharing
+Link : https://drive.google.com/file/d/1-yQlaC7fkdGGzy3kMHx6Fm1rb7L4YLTE/view?usp=sharing
