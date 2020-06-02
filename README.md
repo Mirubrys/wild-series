@@ -14,4 +14,4 @@
 * 02/06/2020 - The homepage design is as it is in the wireframe.
 
 # Demo Video
-Link : https://drive.google.com/file/d/1t_4b73os_cpieo2UzIVWi87_eZ8SY9nF/view?usp=sharing
+Link : https://drive.google.com/file/d/1gCUTTMrfd7nJ0SjjEI4yaORJvPR2U9v1/view?usp=sharing
