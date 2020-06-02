@@ -1,19 +1,44 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container-fluid">
-        <h1>Bienvenue sur Wild Series</h1>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="h-100 container-fluid">
+            <div class="h-100 row no-gutters justify-content-center align-items-center">
+                <div class="col-11 col-lg-5 text-center">
+                    <div id="home-logo">
+                        <img src="{{ asset('build/images/wild-series-logo-min.png') }}" alt="wild series logo min">
+                    </div>
+                    <h1 class="display-4 text-secondary">Wild series</h1>
+                    <h4 class="text-white-50">
+                        Retrouvez vos <span class="text-white">wild</span> séries préférées dans notre <span class="text-white">wild</span> catalogue
+                    </h4>
+                </div>
+            </div>
+        </div>
     </div>
-    <a href="{{ path('wild_show_category', { 'categoryName': "horreur" }) }}">
-        Testing showByCategory() method from WildController with a real category s slug.
-    </a>
-    <br>
-    <a href="{{ path('wild_show', { 'slug': "walking-dead" }) }}">
-        Testing show() method from WildController with a real program s slug.
-    </a>
-    <br>
-    <a href="{{ path('wild_index') }}">
-        Testing index() method from WildController to view all programs.
-    </a>
 
+    <div class="container-fluid">
+
+        <div class="row no-gutters justify-content-center">
+            <h2 class="text-secondary">Derniers ajouts</h2>
+        </div>
+
+            <div class="row no-gutters justify-content-center align-content-end mt-4">
+                {% for program in programs %}
+                    <div class="col-11 col-lg-2 mx-5">
+                        <a class="text-decoration-none" href="{{ path('wild_show', {'slug': program.title|lower|replace({' ': '-'})}) }}">
+                            <div class="img-wrapper">
+                                <img class="img-fluid w-100" src="{{ program.poster }}" alt="{{ program.title }} - poster">
+                            </div>
+                            <div class="text-truncate text-center text-primary mt-4 mb-5 mb-lg-0">
+                                {{ program.title }}
+                            </div>
+                        </a>
+                    </div>
+                {% else %}
+                    Rien à afficher
+                {% endfor %}
+            </div>
+
+    </div>
 {% endblock %}

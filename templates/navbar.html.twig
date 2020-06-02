@@ -1,12 +1,14 @@
-<nav class="col-12 navbar navbar-expand-lg navbar-light bg-primary">
-    <a class="navbar-brand text-secondary" href="{{ path('app_index') }}">Wild Series</a>
-    <button class="navbar-toggler text-secondary" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="col-12 navbar navbar-expand-lg navbar-light">
+    <a class="col-4 navbar-brand p-0" href="{{ path('app_index') }}">
+        <img src="{{ asset('build/images/wild-series-logo.png') }}" alt="wild series logo">
+    </a>
+    <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="col-lg-6 navbar-nav d-lg-flex justify-content-end">
-            <li class="nav-item active border-lg-right border-secondary">
-                <a class="nav-link text-secondary" href="{{ path('wild_index') }}">Séries</a>
+        <ul class="col-lg-6 navbar-nav d-lg-flex justify-content-center">
+            <li class="nav-item active border-lg-right border-white">
+                <a class="nav-link" href="{{ path('wild_index') }}">Séries</a>
             </li>
 
             {{ render(controller(
@@ -14,15 +16,18 @@
             )) }}
 
             <li class="nav-item">
-                <a class="nav-link text-secondary disabled" href="#">Acteurs</a>
+                <a class="nav-link disabled" href="#">Acteurs</a>
             </li>
         </ul>
         <ul class="col-lg-6 navbar-nav d-lg-flex justify-content-end">
-            <li class="nav-item border-lg-right border-secondary">
-                <a class="nav-link text-secondary disabled" href="#">Inscription</a>
+            {{ render(controller(
+                'App\\Controller\\WildController::adminTools'
+            )) }}
+            <li class="nav-item border-lg-right border-white">
+                <a class="nav-link disabled" href="#">Inscription</a>
             </li>
             <li class="nav-item disabled">
-                <a class="nav-link text-secondary disabled" href="#">Connexion</a>
+                <a class="nav-link disabled" href="#">Connexion</a>
             </li>
         </ul>
     </div>
