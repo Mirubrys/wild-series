@@ -3,10 +3,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Actor;
 use App\Entity\Category;
 use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
+use App\Form\ActorSearchType;
 use App\Form\ProgramSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,8 +39,8 @@ class WildController extends AbstractController
      * Display all available programs
      *
      * @Route(
-     *     "/index",
-     *     name="index"
+     *     "/show/index",
+     *     name="show_index"
      * )
      * @param Request $request
      * @return Response
@@ -58,11 +60,7 @@ class WildController extends AbstractController
             /* We query the table 'program' in db */
             $programs = $this->getDoctrine()
                 ->getRepository(Program::class)
-                ->createQueryBuilder('p')
-                ->where('p.title LIKE :search')
-                ->setParameter('search', '%'.$search.'%')
-                ->getQuery()
-                ->getResult();
+                ->findByTitleSearch($search);
         } else {
             /* We get all programs */
             $programs = $this->getDoctrine()
@@ -81,7 +79,7 @@ class WildController extends AbstractController
             'website' => 'Wild Séries',
             'programs' => $programs,
             'form' => $form->createView(),
-            'search' => $form->isSubmitted()
+            'search' => $form->isSubmitted(),
         ]);
     }
 
@@ -129,9 +127,13 @@ class WildController extends AbstractController
         // We get all seasons of the got program
         $seasons = $program->getSeasons();
 
+        // We get all actors of the program
+        $actors = $program->getActors();
+
         return $this->render('wild/show.html.twig', [
             'program' => $program,
             'slug'  => $slug,
+            'actors' => $actors,
             'seasons' => $seasons,
         ]);
     }
@@ -269,6 +271,74 @@ class WildController extends AbstractController
             'episode' => $episode,
             'season' => $season,
             'program' => $program,
+        ]);
+    }
+
+    /**
+     * Display all actors
+     *
+     * @param Request $request
+     * @Route(
+     *     "/actor/index",
+     *     name="show_actor_index"
+     * )
+     * @return Response
+     */
+    public function actorIndex(Request $request) :Response
+    {
+
+        /* We instantiate a search form */
+        $form = $this->createForm(ActorSearchType::class);
+        $form->handleRequest($request);
+
+        /* If the user make a search, we get the matching ones,
+        Else, we get all programs */
+        if ($form->isSubmitted()) {
+            // We get the _POST
+            $search = $form->getData()['searchField'];
+
+            /* We query the table 'program' in db */
+            $actors = $this->getDoctrine()
+                ->getRepository(Actor::class)
+                ->findByNameSearch($search);
+        } else {
+            /* We get all programs */
+            $actors = $this->getDoctrine()
+                ->getRepository(Actor::class)
+                ->findAll();
+
+            /* If no program where found, we throw a http code 404 */
+            if (!$actors) {
+                throw $this->createNotFoundException(
+                    'No program found in program\'s table.'
+                );
+            }
+        }
+
+        return $this->render('wild/actor_index.html.twig', [
+            'website' => 'Wild Séries',
+            'actors' => $actors,
+            'form' => $form->createView(),
+            'search' => $form->isSubmitted(),
+        ]);
+    }
+
+
+    /**
+     * Display the selected actor's page
+     *
+     * @param Actor $actor
+     * @Route(
+     *     "/show/actor/{id<^\d+$>}",
+     *     defaults={"id" = null},
+     *     name = "show_actor"
+     * )
+     * @return Response
+     */
+    public function actorShow(Actor $actor) :Response
+    {
+        return $this->render('wild/actor_show.html.twig', [
+            'actor' => $actor,
         ]);
     }
 }
