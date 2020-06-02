@@ -6,6 +6,7 @@ use App\Repository\SeasonRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=SeasonRepository::class)
@@ -21,16 +22,28 @@ class Season
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(
+     *     message="Le champs est vide, veuillez saisir un numéro de saison.
+     * )
+     * @Assert\Positive(
+     *     message="Le numéro de saison doit être supérieur à zéro."
+     * )
      */
     private $number;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Positive(
+     *     message="L'année doit être positive."
+     * )
      */
     private $year;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(
+     *     message="Le champs est vide, veuillez saisir une decription pour la saison."
+     * )
      */
     private $description;
 

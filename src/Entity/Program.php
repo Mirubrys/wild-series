@@ -6,9 +6,15 @@ use App\Repository\ProgramRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProgramRepository::class)
+ * @UniqueEntity(
+ *     fields={"title"},
+ *     message="La série {{ value }} existe déjà."
+ * )
  */
 class Program
 {
@@ -21,16 +27,38 @@ class Program
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *     message="Le champs est vide, veuillez saisir un titre."
+     * )
+     * @Assert\Length(
+     *     max="255",
+     *     maxMessage="Le titre fournit {{ value }} est beaucoup trop long (255 caractères max)."
+     * )
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(
+     *     message="Le champs est vide, veuillez saisir un résumé."
+     * )
+     * @Assert\Regex(
+     *     pattern="/plus belle la vie/",
+     *     match=false,
+     *     message="On parle de vraies séries ici !!!"
+     * )
      */
     private $summary;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max="255",
+     *     maxMessage="Le lien fourni est beaucoup trop long (255 caractères max)."
+     * )
+     * @Assert\NotBlank(
+     *     message="Le champs est vide, veuillez saisir un lien vers une image."
+     * )
      */
     private $poster;
 
