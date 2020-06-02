@@ -24,6 +24,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class WildController extends AbstractController
 {
     /**
+     * Display a dropdown witch contains all administrations links
+     *
+     * @return Response
+     */
+    public function adminTools() :Response
+    {
+        return $this->render('embed/_admin_tools_list.html.twig');
+    }
+
+    /**
      * Display all available programs
      *
      * @Route(
