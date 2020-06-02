@@ -15,7 +15,23 @@
                     <h2 class="text-secondary">Saisons</h2>
                     <ul class="col-12 col-lg-6 list-group list-group-flush">
                         {% for season in seasons %}
-                            <li class="list-group-item"><a class="text-secondary" href="{{path('wild_show_season', {'id': season.id})}}">Saison {{ season.number }}</a></li>
+                            <li class="list-group-item">
+                                <a class="text-secondary" href="{{path('wild_show_season', {'id': season.id})}}">
+                                    Saison {{ season.number }}
+                                </a>
+                            </li>
+                        {% else %}
+                            Nothing to display.
+                        {% endfor %}
+                    </ul>
+                    <h2 class="mt-5 text-secondary">Acteurs</h2>
+                    <ul class="col-12 col-lg-6 list-group list-group-flush">
+                        {% for actor in actors %}
+                            <li class="list-group-item">
+                                <a class="text-secondary" href="{{path('wild_show_actor', {'id': actor.id})}}">
+                                    {{ actor.name }}
+                                </a>
+                            </li>
                         {% else %}
                             Nothing to display.
                         {% endfor %}
@@ -26,7 +42,7 @@
 
         <div class="row no-gutters justify-content-center mt-5">
             <div class="col-11 col-lg-10">
-                <a href="{{ path('wild_index') }}">
+                <a href="{{ path('wild_show_index') }}">
                     Retour à la liste des séries
                 </a>
             </div>
@@ -36,6 +52,6 @@
 {% endblock %}
 
 {% block breadcrumb %}
-    <li class="breadcrumb-item"><a href="{{ path('wild_index') }}">Séries</a></li>
+    <li class="breadcrumb-item"><a href="{{ path('wild_show_index') }}">Séries</a></li>
     <li class="breadcrumb-item active" aria-current="page">{{ program.title }}</li>
 {% endblock %}

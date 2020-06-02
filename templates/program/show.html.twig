@@ -23,6 +23,19 @@
                 <th>Poster</th>
                 <td>{{ program.poster }}</td>
             </tr>
+            <tr>
+                <th>Acteurs</th>
+                <td>
+                    {% for actor in program.actors %}
+                        <a href="{{ path('actor_show', {'id': actor.id}) }}">
+                            {{ actor.name }}
+                        </a>
+                        {% if not loop.last %}
+                            |
+                        {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
         </tbody>
     </table>
 
