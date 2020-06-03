@@ -23,10 +23,12 @@ class ProgramType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'name'
             ])
-            ->add('Actors', EntityType::class, [
+            ->add('actors', EntityType::class, [
                 'class' => Actor::class,
                 'choice_label' => 'name',
-                'multiple' => true
+                'by_reference' => false,
+                'multiple' => true,
+                'expanded' => true
             ])
         ;
     }
