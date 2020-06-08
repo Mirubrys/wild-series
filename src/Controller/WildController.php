@@ -88,7 +88,7 @@ class WildController extends AbstractController
      *
      * @param string $slug The slugger
      * @Route(
-     *     "/show/{slug<^[a-z0-9-]+$>}",
+     *     "/show/{slug}",
      *     defaults={"slug" = null},
      *     name="show"
      * )
@@ -104,17 +104,11 @@ class WildController extends AbstractController
                 );
         }
 
-        // We format the slug
-        $slug = preg_replace(
-            '/-/',
-            ' ', ucwords(trim(strip_tags($slug)), "-")
-        );
-
         /* We get the program by its title */
         $program = $this
             ->getDoctrine()
             ->getRepository(Program::class)
-            ->findOneBy(['title' => mb_strtolower($slug)]);
+            ->findOneBy(['slug' => $slug]);
 
         /* If there is no program returned, we throw a http code 404 */
         if (!$program) {
@@ -253,8 +247,8 @@ class WildController extends AbstractController
      *
      * @param Episode $episode
      * @Route(
-     *     "/show/episode/{id<^\d+$>}",
-     *     defaults={"id" = null},
+     *     "/show/episode/{slug}",
+     *     defaults={"slug" = null},
      *     name = "show_episode"
      * )
      * @return Response
@@ -329,8 +323,8 @@ class WildController extends AbstractController
      *
      * @param Actor $actor
      * @Route(
-     *     "/show/actor/{id<^\d+$>}",
-     *     defaults={"id" = null},
+     *     "/show/actor/{slug}",
+     *     defaults={"slug" = null},
      *     name = "show_actor"
      * )
      * @return Response

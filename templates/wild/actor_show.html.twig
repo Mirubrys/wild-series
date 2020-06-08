@@ -15,7 +15,7 @@
                 <ul class="col-12 col-lg-6 list-group list-group-flush">
                     {% for program in actor.programs %}
                         <li class="list-group-item">
-                            <a class="text-secondary" href="{{ path('wild_show', {'slug': program.title|lower|replace({' ': '-'})}) }}">
+                            <a class="text-secondary" href="{{ path('wild_show', {'slug': program.slug}) }}">
                                 {{ program.title }}
                             </a>
                         </li>

@@ -20,7 +20,7 @@
                 <h2 class="text-secondary">Liste des épisodes</h2>
                 <ul class="list-group list-group-flush">
                     {% for episode in episodes %}
-                        <li class="list-group-item"><a class="text-secondary" href="{{ path('wild_show_episode', {'id': episode.id}) }}">Épisode {{ episode.number }} : {{ episode.title }}</a></li>
+                        <li class="list-group-item"><a class="text-secondary" href="{{ path('wild_show_episode', {'slug': episode.slug}) }}">Épisode {{ episode.number }} : {{ episode.title }}</a></li>
                     {% else %}
                         Nothing to display.
                     {% endfor %}

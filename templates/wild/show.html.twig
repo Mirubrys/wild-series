@@ -28,7 +28,7 @@
                     <ul class="col-12 col-lg-6 list-group list-group-flush">
                         {% for actor in actors %}
                             <li class="list-group-item">
-                                <a class="text-secondary" href="{{path('wild_show_actor', {'id': actor.id})}}">
+                                <a class="text-secondary" href="{{path('wild_show_actor', {'slug': actor.slug})}}">
                                     {{ actor.name }}
                                 </a>
                             </li>

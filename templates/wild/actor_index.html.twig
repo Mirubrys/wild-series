@@ -32,7 +32,7 @@
         <div class="row no-gutters justify-content-center">
             {% for actor in actors %}
                 <div class="col-11 col-lg-8">
-                    <h2><a class="text-secondary" href="{{ path('wild_show_actor', {'id': actor.id}) }}">{{ loop.index }} / {{ actor.name }}</a></h2>
+                    <h2><a class="text-secondary" href="{{ path('wild_show_actor', {'slug': actor.slug}) }}">{{ loop.index }} / {{ actor.name }}</a></h2>
                 </div>
             {% else %}
                 Aucun acteur trouvé.

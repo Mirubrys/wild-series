@@ -4,6 +4,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Program;
+use App\Service\Slugify;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -43,6 +44,7 @@ class ProgramFixtures extends AppFixtures implements DependentFixtureInterface
             'category' => 'category_4',
        ],
     ];
+
     /**
      * @inheritDoc
      */
@@ -50,6 +52,7 @@ class ProgramFixtures extends AppFixtures implements DependentFixtureInterface
     {
         $this->createMany(Program::class, count(self::PROGRAMS), function(Program $program, $count) {
             $program->setTitle(self::PROGRAMS[$count]['title'])
+                ->setSlug($this->slugify->generate(self::PROGRAMS[$count]['title']))
                 ->setCategory($this->getReference(self::PROGRAMS[$count]['category']))
                 ->setSummary(self::PROGRAMS[$count]['summary']);
         });

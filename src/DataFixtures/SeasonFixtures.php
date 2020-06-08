@@ -20,7 +20,7 @@ class SeasonFixtures extends AppFixtures implements DependentFixtureInterface
         $index = 0;
         foreach (ProgramFixtures::PROGRAMS as $key => $data)
         {
-            for ($i=1; $i <= 10; $i++)
+            for ($i=1; $i<= 10; $i++)
             {
                 $season = new Season();
                 $season->setNumber($i)

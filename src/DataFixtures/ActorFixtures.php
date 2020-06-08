@@ -24,6 +24,7 @@ class ActorFixtures extends AppFixtures implements DependentFixtureInterface
     {
         $this->createMany(Actor::class, 50, function(Actor $actor, $count) {
             $actor->setName($this->faker->name)
+                ->setSlug($this->slugify->generate($actor->getName()))
                 ->addProgram($this->getRandomReference(Program::class))
             ;
         });
@@ -32,6 +33,7 @@ class ActorFixtures extends AppFixtures implements DependentFixtureInterface
         {
             $actor = new Actor();
             $actor->setName($name)
+                ->setSlug($this->slugify->generate($name))
                 ->addProgram($this->getReference(Program::class.'_0'))
             ;
             $manager->persist($actor);

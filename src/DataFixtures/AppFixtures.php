@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Service\Slugify;
 use Faker;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -19,11 +20,14 @@ abstract class AppFixtures extends Fixture
 
     protected $populator;
 
+    protected $slugify;
+
     public function load(ObjectManager $manager)
     {
         $this->manager = $manager;
         $this->faker = Factory::create();
         $this->populator = new Populator($this->faker);
+        $this->slugify = new Slugify();
         $this->loadData($manager);
     }
 

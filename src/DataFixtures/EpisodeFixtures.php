@@ -28,6 +28,7 @@ class EpisodeFixtures extends AppFixtures implements DependentFixtureInterface
                     $episode = new Episode();
                     $episode->setNumber($j)
                         ->setTitle($this->faker->words($nb = 3, $asText = true))
+                        ->setSlug($this->slugify->generate($episode->getTitle()))
                         ->setSynopsis($this->faker->text(400))
                         ->setSeason($this->getReference(Season::class.'_'.(string)$seasonNumber))
                     ;
