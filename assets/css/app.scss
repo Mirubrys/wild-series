@@ -1,8 +1,10 @@
+/** Importing Bootstrap functions and variables */
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 
-$primary-color : #ff5200;
-$secondary-color : #6f0000;
+/** Changing bootstrap colors variables */
+$primary-color : #ff5200; // Primary color
+$secondary-color : #6f0000; // Secondary color
 
 $theme-colors: (
   "primary":    $primary-color,
@@ -13,6 +15,13 @@ $theme-colors: (
   "danger":     $danger,
   "light":      $light,
   "dark":       $dark,
-);
+); // Array of Bootstrap colors
 
+/** Fixed-top navbar correction */
+body {
+  min-height: 75rem;
+  padding-top: 4.5rem;
+}
+
+/** Importing whole Bootstrap */
 @import "~bootstrap/scss/bootstrap";
