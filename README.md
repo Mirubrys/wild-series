@@ -1,2 +1,2 @@
 # wild-series
-03 - Symfony : Création de la page d’accueil
+04 - Symfony : Installation du module Webpack Encore
