@@ -1,0 +1,16 @@
+{% extends 'email_layout.html.twig' %}
+
+{% block content %}
+    <table align="center" border="0" cellspacing="0" cellpadding="0" width="600" style="width:600px;table-layout:fixed;border-collapse:separate;min-width:600px;">
+        <tbody>
+        <tr>
+            <td align="center" valign="top" style="border-collapse:separate;table-layout:fixed">
+                <h1 style="color: #6f0000">{{ program.title }}</h1>
+                <img src="{{ program.poster }}" width="600" style="max-width:600px;border:none;display:block;outline:none">
+                <h3 style="color: #6f0000">Synopsis</h3>
+                <p style="color: black">{{ program.summary }}</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}
