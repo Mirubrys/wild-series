@@ -1,5 +1,5 @@
 # wild-series
-17 - Symfony : Introduction aux “Services”
+18 - Symfony : Envoi d’e-mail
 
 # Installation
 * Just clone this repository, if it is already done, launch a terminal inside the root folder and run `git checkout form`.
@@ -16,4 +16,4 @@
 * 02/06/2020 - The homepage design is as it is in the wireframe.
 
 # Demo Video
-Link : https://drive.google.com/file/d/1SkUwvwPQAud3VpxpUx7BtTe9pThbwoFP/view?usp=sharing
+Link : https://drive.google.com/file/d/1LKHCXE_c44t_vvPFiO0q6GNxSroBBr4B/view?usp=sharing
