@@ -29,6 +29,7 @@ class Slugify
         );
 
         $slug = strtolower(str_replace($search, $replace, $input));
+        $slug = preg_replace('/[[:punct:]]+/', '', $slug);
 
         return preg_replace('/[^\w]+/', '-',  $slug);
     }
